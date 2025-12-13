@@ -56,6 +56,7 @@
   </div>
 
   <button onclick="check()">Lösung prüfen</button>
+  <button onclick="reset()">Zurücksetzen</button>
   <p id="msg"></p>
 </div>
 
@@ -66,6 +67,13 @@ function check() {
   const b = +blau.value
   const r = +rot.value
   const br = +braun.value
+  function reset() {
+  gelb.value = ""
+  blau.value = ""
+  rot.value = ""
+  braun.value = ""
+  msg.textContent = ""
+}
 
   const nums = [g,y,b,r,br]
   if (nums.some(n => n < 1 || n > 9)) return msg.textContent = "Zahlen 1–9"
@@ -78,9 +86,10 @@ function check() {
 
   let ok=false
   for (let a of nums) for (let c of nums) if (a!==c && a/c===r) ok=true
-  if (!ok) return msg.textContent="Division ergibt Rot"
+  if (!ok) return msg.innerHTML = "<span class='error'>Keine Zahl doppelt</span>"
 
-  msg.textContent = "✅ Alle Bedingungen erfüllt!"
+msg.innerHTML = "<span class='success'>✅ Alle Bedingungen erfüllt – der Farbencode ist korrekt!</span>"
+
 }
 </script>
 
