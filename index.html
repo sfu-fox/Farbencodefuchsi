@@ -1,12 +1,58 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Farbencode Challenge</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Farbencode-Challenge</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f3f4f6; padding:20px }
+    .box { background:white; padding:20px; max-width:600px; margin:auto; border-radius:8px }
+    .row { display:flex; gap:10px; margin-bottom:10px }
+    label { flex:1; text-align:center }
+    input { width:100%; padding:6px; text-align:center }
+    button { padding:10px 16px; margin-top:10px }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Die Challenge: Findest du den Farbencode?</h2>
+
+  <div class="row">
+    <label>Grün<br><input value="6" disabled></label>
+    <label>Gelb<br><input id="gelb" type="number"></label>
+    <label>Blau<br><input id="blau" type="number"></label>
+    <label>Rot<br><input id="rot" type="number"></label>
+    <label>Braun<br><input id="braun" type="number"></label>
+  </div>
+
+  <button onclick="check()">Lösung prüfen</button>
+  <p id="msg"></p>
+</div>
+
+<script>
+function check() {
+  const g = 6
+  const y = +gelb.value
+  const b = +blau.value
+  const r = +rot.value
+  const br = +braun.value
+
+  const nums = [g,y,b,r,br]
+  if (nums.some(n => n < 1 || n > 9)) return msg.textContent = "Zahlen 1–9"
+  if (new Set(nums).size !== 5) return msg.textContent = "Keine Zahl doppelt"
+  if (g + y !== b) return msg.textContent = "Grün + Gelb = Blau"
+  if (y + 4 !== br) return msg.textContent = "Gelb + 4 = Braun"
+
+  const even = nums.filter(n=>n%2===0).length
+  if (even !== 2) return msg.textContent = "2 gerade, 3 ungerade"
+
+  let ok=false
+  for (let a of nums) for (let c of nums) if (a!==c && a/c===r) ok=true
+  if (!ok) return msg.textContent="Division ergibt Rot"
+
+  msg.textContent = "✅ Alle Bedingungen erfüllt!"
+}
+</script>
+
+</body>
 </html>
