@@ -46,14 +46,27 @@
   <li>Addiert man <strong>4</strong> zur <strong>gelben</strong> Zahl, erhält man die <strong>braune</strong> Zahl.</li>
 </ul>
 
+  <<div class="row">
+  <label class="green">Grün<br>
+    <input value="6" disabled class="input-green">
+  </label>
 
-  <div class="row">
-    <label>Grün<br><input value="6" disabled></label>
-    <label>Gelb<br><input id="gelb" type="number"></label>
-    <label>Blau<br><input id="blau" type="number"></label>
-    <label>Rot<br><input id="rot" type="number"></label>
-    <label>Braun<br><input id="braun" type="number"></label>
-  </div>
+  <label class="yellow">Gelb<br>
+    <input id="gelb" type="number" class="input-yellow">
+  </label>
+
+  <label class="blue">Blau<br>
+    <input id="blau" type="number" class="input-blue">
+  </label>
+
+  <label class="red">Rot<br>
+    <input id="rot" type="number" class="input-red">
+  </label>
+
+  <label class="brown">Braun<br>
+    <input id="braun" type="number" class="input-brown">
+  </label>
+</div>
 
   <button onclick="check()">Lösung prüfen</button>
   <button onclick="reset()">Zurücksetzen</button>
